@@ -1,9 +1,6 @@
 package com.company.employeetaskmanager.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Employee {
@@ -11,19 +8,16 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
-    private String email;
-    private String department;
-    private double salary;
+    private String position;
 
     public Employee() {
     }
 
-    public Employee(String name, String email, String department, double salary) {
+    public Employee(String name, String position) {
         this.name = name;
-        this.email = email;
-        this.department = department;
-        this.salary = salary;
+        this.position = position;
     }
 
     public Long getId() {
@@ -42,33 +36,11 @@ public class Employee {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPosition() {
+        return position;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("ID: %d | Name: %s | Email: %s | Department: %s | Salary: $%.2f",
-                id, name, email, department, salary);
+    public void setPosition(String position) {
+        this.position = position;
     }
 }
