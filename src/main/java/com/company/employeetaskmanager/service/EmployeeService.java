@@ -4,84 +4,36 @@ import com.company.employeetaskmanager.model.Employee;
 import com.company.employeetaskmanager.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
 public class EmployeeService {
 
     @Autowired
-    private EmployeeRepository repository;
+    private EmployeeRepository employeeRepository;
 
-    public Employee createEmployee(Employee employee) {
-        if (employee.getName() == null || employee.getName().trim().isEmpty()) {
-            throw new IllegalArgumentException("Employee name cannot be empty");
-        }
-
-        if (employee.getEmail() == null || !employee.getEmail().contains("@")) {
-            throw new IllegalArgumentException("Invalid email format");
-        }
-
-        if (employee.getDepartment() == null || employee.getDepartment().trim().isEmpty()) {
-            throw new IllegalArgumentException("Department cannot be empty");
-        }
-
-        if (employee.getSalary() < 0) {
-            throw new IllegalArgumentException("Salary cannot be negative");
-        }
-
-        return repository.save(employee);
+    public Employee save(Employee employee) {
+        return employeeRepository.save(employee);
     }
 
-    public Employee getEmployeeById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Employee not found with ID: " + id));
+    public Employee findById(Long id) {
+        return employeeRepository.findById(id).orElse(null);
     }
 
-    public long getEmployeeCount() {
-        return repository.count();
+    public List<Employee> findByName(String name) {
+        return employeeRepository.findByName(name);
     }
 
-    public List<Employee> getAllEmployeesSorted() {
-        return repository.findAllByOrderByNameAsc();
+    public List<Employee> findAllByOrderByName() {
+        return employeeRepository.findAllByOrderByName();
     }
 
-    public List<Employee> getEmployeesByDepartment(String department) {
-        return repository.findByDepartment(department);
+    public long count() {
+        return employeeRepository.count();
     }
 
-    public Employee updateEmployee(Long id, Employee employee) {
-        Employee existing = repository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Employee not found with ID: " + id));
-
-        if (employee.getName() == null || employee.getName().trim().isEmpty()) {
-            throw new IllegalArgumentException("Employee name cannot be empty");
-        }
-
-        if (employee.getEmail() == null || !employee.getEmail().contains("@")) {
-            throw new IllegalArgumentException("Invalid email format");
-        }
-
-        if (employee.getDepartment() == null || employee.getDepartment().trim().isEmpty()) {
-            throw new IllegalArgumentException("Department cannot be empty");
-        }
-
-        if (employee.getSalary() < 0) {
-            throw new IllegalArgumentException("Salary cannot be negative");
-        }
-
-        existing.setName(employee.getName());
-        existing.setEmail(employee.getEmail());
-        existing.setDepartment(employee.getDepartment());
-        existing.setSalary(employee.getSalary());
-
-        return repository.save(existing);
-    }
-
-    public boolean deleteEmployee(Long id) {
-        if (!repository.existsById(id)) {
-            throw new IllegalArgumentException("Employee not found with ID: " + id);
-        }
-        repository.deleteById(id);
-        return true;
+    public void deleteById(Long id) {
+        employeeRepository.deleteById(id);
     }
 }
