@@ -1,3 +1,10 @@
+
+/*
+ * REST controller for Employee endpoints
+ * Used Claude.ai to help write the HTTP request handling logic and debug response codes
+ */
+
+
 package com.company.employeetaskmanager.controller;
 
 import com.company.employeetaskmanager.model.Employee;

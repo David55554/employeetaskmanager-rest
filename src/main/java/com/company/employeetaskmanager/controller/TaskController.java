@@ -1,3 +1,10 @@
+
+/*
+ * REST controller for Task endpoints
+ * Used Claude.ai to help structure the endpoint methods and handle error cases
+ */
+
+
 package com.company.employeetaskmanager.controller;
 
 import com.company.employeetaskmanager.model.Task;

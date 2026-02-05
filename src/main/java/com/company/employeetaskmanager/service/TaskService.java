@@ -1,3 +1,9 @@
+/*
+ * Service layer for Task operations
+ * Used Claude.ai to understand exception handling and input validation
+ */
+
+
 package com.company.employeetaskmanager.service;
 
 import com.company.employeetaskmanager.model.Task;

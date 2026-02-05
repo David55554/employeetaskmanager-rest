@@ -1,3 +1,10 @@
+/*
+ * Service layer for Employee operations
+ * Used Claude.ai for validation pattern examples and debugging business logic
+ */
+
+
+
 package com.company.employeetaskmanager.service;
 
 import com.company.employeetaskmanager.model.Employee;
