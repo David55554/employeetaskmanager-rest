@@ -1,30 +1,33 @@
-# Employee Task Manager REST API
+Docker Deployment
 
-## What This Does
-This project manages employees and tasks. We converted the command line app from project 2 into a REST API using Spring Boot.
+This application is containerized using Docker.
 
-## What We Used
-Spring Boot, Spring Data JPA, H2 Database, Swagger, and Maven.
+Running with Docker
 
-## The Entities
+Pull the image from Docker Hub:
 
-Employee has id, name, email, department, and salary.
+docker pull YOUR-david11577/employeetaskmanager-rest:1.0
 
-Task has id, taskName, employeeId, deadline, priority, and status.
 
-## How to Run
-Open the project in IntelliJ. Run EmployeeTaskManagerRestApplication. Go to http://localhost:8080/swagger-ui.html in your browser.
+Run the container:
 
-## Endpoints
+docker run -d -p 8080:8080 --name employee-api YOUR-david11577/employeetaskmanager-rest:1.0
 
-### Employee
-You can create employees, get them by id, count them, get a sorted list, find by department, update them, and delete them.
 
-### Task
-You can create tasks, get them by id, count them, get them sorted, find by employee, find by status, update them, and delete them.
+Access the API at http://localhost:8080/swagger-ui.html
 
-## Testing
-We tested everything using Swagger. Just open the Swagger page and try the different endpoints.
+Building Locally
 
-## Main Changes
-We replaced the CLI with REST controllers. Now you use HTTP requests instead of typing commands.
+Build the JAR file:
+
+./mvnw clean package -DskipTests
+
+
+Build the Docker image:
+
+docker build -t employeetaskmanager-rest:1.0 .
+
+
+Run the container:
+
+docker run -d -p 8080:8080 --name employee-api employeetaskmanager-rest:1.0
